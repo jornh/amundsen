@@ -1,16 +1,21 @@
 # Installation
 
-## Bootstrap a default version of Amundsen using Docker
-The following instructions are for setting up a version of Amundsen using Docker.
+## Bootstrap Amundsen using Docker
+The following instructions are for setting up a "Quickstart" version of Amundsen using Docker.
 
 1. Install `docker` and  `docker-compose`.
-2. Clone [amundsenfrontendlibrary](https://github.com/lyft/amundsenfrontendlibrary) or download the [docker-amundsen.yml](https://github.com/lyft/amundsenfrontendlibrary/blob/master/docker-amundsen.yml) file directly.
+2. Clone [amundsen](https://github.com/lyft/amundsen) including submodules or download the [docker-amundsen.yml](https://github.com/lyft/amundsen/blob/master/docker-amundsen.yml) file directly.
+    ```bash
+    $ git clone --recurse-submodules -j8 https://github.com/lyft/amundsen amundsen && cd amundsen
+    # or
+    $ curl -F https://github.com/lyft/amundsen/blob/master/docker-amundsen.yml
+    ```
 3. Enter the directory where the `docker-amundsen.yml` file is and then:
     ```bash
+    $ cd amundsen
     $ docker-compose -f docker-amundsen.yml up
     ```
 4. Ingest dummy data into Neo4j by doing the following:
-   * Clone [amundsendatabuilder](https://github.com/lyft/amundsendatabuilder).
    * Run the following commands in the `amundsenddatabuilder` directory:
    ```bash
     $ python3 -m venv venv
