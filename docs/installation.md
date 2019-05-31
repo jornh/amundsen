@@ -6,16 +6,17 @@ The following instructions are for setting up a "Quickstart" version of Amundsen
 1. Install `docker` and  `docker-compose`.
 2. Clone [amundsen](https://github.com/lyft/amundsen) including submodules or download the [docker-amundsen.yml](https://github.com/lyft/amundsen/blob/master/docker-amundsen.yml) file directly.
     ```bash
-    $ git clone --recurse-submodules -j8 https://github.com/lyft/amundsen amundsen && cd amundsen
+    $ git clone --recurse-submodules -j8 https://github.com/lyft/amundsen amundsen
     # or
     $ curl -F https://github.com/lyft/amundsen/blob/master/docker-amundsen.yml
     ```
-3. Enter the directory where the `docker-amundsen.yml` file is and then:
+3. Enter the directory where the `docker-amundsen.yml` compose file is and "up" it:
     ```bash
     $ cd amundsen
     $ docker-compose -f docker-amundsen.yml up
     ```
-4. Ingest dummy data into Neo4j by doing the following:
+4. Ingest sample data by doing the following:
+   * Unless you cloned all of Amundsen in step 2. above, clone [amundsendatabuilder](https://github.com/lyft/amundsendatabuilder).
    * Run the following commands in the `amundsenddatabuilder` directory:
    ```bash
     $ python3 -m venv venv
@@ -28,7 +29,7 @@ The following instructions are for setting up a "Quickstart" version of Amundsen
 
 ### Verify setup
 
-1. You can verify dummy data has been ingested into Neo4j by by visiting [`http://localhost:7474/browser/`](http://localhost:7474/browser/) and run `MATCH (n:Table) RETURN n LIMIT 25` in the query box. You should see two tables:
+1. You can verify sample data has been ingested into Neo4j by by visiting [`http://localhost:7474/browser/`](http://localhost:7474/browser/) and run `MATCH (n:Table) RETURN n LIMIT 25` in the query box. You should see two tables:
    1. `hive.test_schema.test_table1`
    2. `dynamo.test_schema.test_table2`
 2. You can verify the data has been loaded into the metadataservice by visiting:
